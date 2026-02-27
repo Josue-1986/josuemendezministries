@@ -9,89 +9,204 @@
   <style>
     :root{
       --bg:#ffffff;
-      --text:#0f172a;
-      --muted:#475569;
-      --line:#e2e8f0;
-      --shadow:0 12px 30px rgba(2,6,23,.08);
-      --r:20px;
-      --max:1080px;
-      --accent:#0f172a;
+      --text:#0b1220;
+      --muted:#546071;
+      --line:#e6ebf2;
+      --soft:#f6f8fb;
+      --shadow: 0 16px 40px rgba(2,6,23,.10);
+      --shadow2: 0 10px 24px rgba(2,6,23,.08);
+      --r:22px;
+      --max:1100px;
+      --accent:#0b1220;
+      --accent2:#1f2a44;
     }
     *{box-sizing:border-box}
-    body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text);line-height:1.6}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
     a{color:inherit}
-    .wrap{max-width:var(--max);margin:0 auto;padding:24px}
+    .wrap{max-width:var(--max); margin:0 auto; padding:24px}
     header{
-      position:sticky;top:0;z-index:10;
-      background:rgba(255,255,255,.9);
-      backdrop-filter: blur(10px);
+      position:sticky; top:0; z-index:20;
+      background:rgba(255,255,255,.88);
+      backdrop-filter:saturate(180%) blur(10px);
       border-bottom:1px solid var(--line);
     }
-    .nav{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
-    .brand{padding:14px 0}
-    .brand b{display:block;letter-spacing:.7px;text-transform:uppercase;font-size:13px}
-    .brand span{color:var(--muted);font-size:12px}
-    .links{display:flex;gap:10px;flex-wrap:wrap}
-    .links a{font-size:13px;color:var(--muted);text-decoration:none;padding:10px 12px;border-radius:14px}
-    .links a:hover{background:#f1f5f9;color:var(--text)}
+    .nav{
+      display:flex; justify-content:space-between; align-items:center;
+      gap:14px; flex-wrap:wrap;
+    }
+    .brand{display:flex; align-items:center; gap:12px; padding:14px 0}
+    .mark{
+      width:38px; height:38px; border-radius:14px;
+      background:linear-gradient(135deg, #0b1220 0%, #24304d 100%);
+      box-shadow: var(--shadow2);
+      display:flex; align-items:center; justify-content:center;
+      color:#fff; font-weight:800; letter-spacing:.5px;
+      user-select:none;
+    }
+    .brand b{display:block; letter-spacing:.6px; text-transform:uppercase; font-size:13px}
+    .brand span{display:block; color:var(--muted); font-size:12px}
+    .links{display:flex; gap:8px; flex-wrap:wrap}
+    .links a{
+      font-size:13px; color:var(--muted); text-decoration:none;
+      padding:10px 12px; border-radius:14px;
+    }
+    .links a:hover{background:var(--soft); color:var(--text)}
 
-    .hero{padding:52px 0 26px;border-bottom:1px solid var(--line)}
-    .heroGrid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:start}
-    @media(max-width:900px){.heroGrid{grid-template-columns:1fr}}
-    .pill{
-      display:inline-flex;gap:10px;align-items:center;
-      border:1px solid var(--line);
-      border-radius:999px;padding:8px 12px;
-      font-size:13px;color:var(--muted);background:#fbfdff;width:fit-content
+    /* HERO */
+    .hero{
+      padding:46px 0 28px;
+      border-bottom:1px solid var(--line);
     }
-    h1{margin:12px 0 8px;font-size:42px;letter-spacing:-.8px}
-    @media(max-width:520px){h1{font-size:34px}}
-    .sub{margin:0;color:var(--muted);max-width:65ch}
-    .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:18px;
+      align-items:stretch;
+    }
+    @media(max-width:900px){ .heroGrid{grid-template-columns:1fr} }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 12px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:#fbfdff;
+      color:var(--muted);
+      font-size:13px;
+      width:fit-content;
+    }
+    h1{margin:14px 0 10px; font-size:44px; letter-spacing:-1px}
+    @media(max-width:520px){ h1{font-size:36px} }
+    .sub{
+      margin:0;
+      color:var(--muted);
+      font-size:16px;
+      max-width:70ch;
+    }
+    .cta{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px}
     .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 14px;
+      border-radius:16px;
       border:1px solid var(--line);
-      padding:12px 14px;border-radius:16px;
-      text-decoration:none;font-size:14px;
-      display:inline-flex;align-items:center;justify-content:center;gap:10px;
-      background:#fff
+      background:#fff;
+      text-decoration:none;
+      font-size:14px;
+      box-shadow: 0 1px 0 rgba(2,6,23,.02);
+      transition: transform .12s ease;
     }
-    .btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+    .btn.primary{
+      background:var(--accent);
+      color:#fff;
+      border-color:var(--accent);
+    }
     .btn:hover{transform:translateY(-1px)}
     .btn:active{transform:translateY(0)}
+
+    .heroCard{
+      border:1px solid var(--line);
+      border-radius:var(--r);
+      background:linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+      box-shadow:var(--shadow);
+      padding:18px;
+      display:flex; flex-direction:column; gap:12px;
+    }
+    .stats{
+      display:grid; grid-template-columns:1fr 1fr; gap:10px;
+    }
+    .mini{
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:12px;
+      background:#fff;
+    }
+    .mini b{display:block; font-size:12px; color:var(--muted); letter-spacing:.4px; text-transform:uppercase}
+    .mini span{display:block; margin-top:6px; font-size:14px; color:var(--text)}
+    .pillLine{
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:var(--soft);
+      padding:12px;
+      color:var(--muted);
+      font-size:13px;
+    }
+
+    /* SECTIONS */
+    section{padding:34px 0; border-bottom:1px solid var(--line)}
+    section:last-of-type{border-bottom:none}
+    .secTitle{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:12px; flex-wrap:wrap;
+      margin-bottom:14px;
+    }
+    .secTitle h2{margin:0; font-size:22px; letter-spacing:-.3px}
+    .secTitle p{margin:0; color:var(--muted); font-size:14px}
+
+    .grid{
+      display:grid; grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+    @media(max-width:900px){ .grid{grid-template-columns:1fr} }
 
     .card{
       border:1px solid var(--line);
       border-radius:var(--r);
-      padding:18px;background:#fff;
-      box-shadow:var(--shadow)
+      padding:18px;
+      background:#fff;
+      box-shadow:var(--shadow2);
     }
-    section{padding:34px 0;border-bottom:1px solid var(--line)}
-    section:last-of-type{border-bottom:none}
-    .secTitle{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-end;margin-bottom:12px}
-    .secTitle h2{margin:0;font-size:22px;letter-spacing:-.2px}
-    .secTitle p{margin:0;color:var(--muted);font-size:14px}
+    .card p{margin:0; color:var(--muted)}
+    .card h3{margin:0 0 10px; font-size:16px}
 
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-    @media(max-width:900px){.grid{grid-template-columns:1fr}}
-
-    .bookGrid{display:grid;grid-template-columns:170px 1fr;gap:18px;align-items:start}
-    @media(max-width:650px){.bookGrid{grid-template-columns:1fr}}
-    .cover{
-      height:240px;border-radius:18px;
-      border:1px dashed var(--line);
-      background:#fbfdff;
-      display:flex;align-items:center;justify-content:center;
-      color:var(--muted);text-align:center;padding:12px
+    .bookGrid{
+      display:grid; grid-template-columns: 180px 1fr;
+      gap:18px; align-items:start;
     }
-    ul{margin:12px 0 0;padding-left:18px;color:var(--muted)}
+    @media(max-width:650px){ .bookGrid{grid-template-columns:1fr} }
+    .imgBox{
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:var(--soft);
+      overflow:hidden;
+      height:260px;
+      display:flex; align-items:center; justify-content:center;
+      color:var(--muted);
+      text-align:center;
+      padding:12px;
+    }
+    .imgBox img{width:100%; height:100%; object-fit:cover; display:block}
+    ul{margin:12px 0 0; padding-left:18px; color:var(--muted)}
     li{margin:6px 0}
 
-    label{display:block;margin:10px 0 6px;font-size:13px;color:var(--muted)}
-    input,textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:16px;font-size:14px}
-    textarea{min-height:120px;resize:vertical}
+    label{display:block; margin:10px 0 6px; font-size:13px; color:var(--muted)}
+    input, textarea{
+      width:100%;
+      padding:12px 12px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      font-size:14px;
+      background:#fff;
+      outline:none;
+    }
+    textarea{min-height:120px; resize:vertical}
+    input:focus, textarea:focus{border-color:#a9b5c8}
+    .formActions{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+    button.btn{cursor:pointer}
 
-    footer{padding:24px 0 46px;color:var(--muted);font-size:13px}
-    .note{border:1px solid var(--line);background:#fbfdff;border-radius:16px;padding:12px;color:var(--muted);font-size:13px}
+    footer{padding:24px 0 46px; color:var(--muted); font-size:13px}
+    .note{
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:12px;
+      background:#fbfdff;
+      color:var(--muted);
+      font-size:13px;
+    }
   </style>
 </head>
 
@@ -99,10 +214,14 @@
 <header>
   <div class="wrap nav">
     <div class="brand">
-      <b>Josué Méndez Ministries</b>
-      <span>Evangelista | Autor | Predicador</span>
+      <div class="mark">JM</div>
+      <div>
+        <b>Josué Méndez Ministries</b>
+        <span>Evangelista | Autor | Predicador</span>
+      </div>
     </div>
     <nav class="links">
+      <a href="#ministerio">Ministerio</a>
       <a href="#libro">Libro</a>
       <a href="#invitaciones">Invitaciones</a>
       <a href="#contacto">Contacto</a>
@@ -114,30 +233,54 @@
   <section class="hero" id="inicio">
     <div class="heroGrid">
       <div>
-        <div class="pill">Sitio oficial • Libro en Amazon • Contacto directo</div>
+        <div class="kicker">Sitio oficial • Libro en Amazon • Contacto directo</div>
         <h1>Josué Méndez</h1>
         <p class="sub">
-          Predicando a Cristo con claridad bíblica y llamado directo a salvación. Aquí puedes ver mi libro en Amazon y contactarme de forma directa y profesional.
+          Predicando a Cristo con claridad bíblica y llamado directo a salvación.
+          Aquí puedes ver mi libro en Amazon y coordinar invitaciones de forma profesional.
         </p>
 
         <div class="cta">
           <a class="btn primary" href="https://a.co/d/06xtLlVF" target="_blank" rel="noopener">Ver libro en Amazon</a>
-          <a class="btn" href="https://wa.me/17875194549?text=Saludos%20Josu%C3%A9%2C%20quisiera%20contactarte.%20" target="_blank" rel="noopener">WhatsApp</a>
-          <a class="btn" href="mailto:josuemendezministries@gmail.com">Email</a>
+          <a class="btn" href="https://wa.me/17875194549?text=Saludos%20Josu%C3%A9%2C%20quisiera%20contactarte.%20" target="_blank" rel="noopener">Contactar por WhatsApp</a>
+          <a class="btn" href="#invitaciones">Invitar a predicar</a>
         </div>
       </div>
 
-      <aside class="card">
-        <h3 style="margin:0 0 10px;font-size:16px;">Contacto rápido</h3>
-        <p style="margin:0 0 12px;color:var(--muted);font-size:14px;">
-          Para invitaciones, eventos o preguntas del libro.
-        </p>
+      <aside class="heroCard">
+        <div class="pillLine">
+          <b style="color:var(--text)">Contacto rápido</b><br>
+          Tel: (787) 519-4549 • Email: josuemendezministries@gmail.com
+        </div>
+
+        <div class="stats">
+          <div class="mini">
+            <b>Amazon</b>
+            <span>Libro publicado</span>
+          </div>
+          <div class="mini">
+            <b>Ministerio</b>
+            <span>Evangelístico</span>
+          </div>
+        </div>
+
         <div class="note">
-          <div><b>Tel:</b> (787) 519-4549</div>
-          <div><b>Email:</b> josuemendezministries@gmail.com</div>
-          <div><b>Amazon:</b> <a href="https://a.co/d/06xtLlVF" target="_blank" rel="noopener">Ver libro</a></div>
+          Próximo upgrade: aquí colocamos tu foto oficial y el logo real para que se vea aún más pro.
         </div>
       </aside>
+    </div>
+  </section>
+
+  <section id="ministerio">
+    <div class="secTitle">
+      <h2>Ministerio</h2>
+      <p>Presentación breve y clara</p>
+    </div>
+    <div class="card">
+      <p>
+        Josué Méndez Ministries existe para proclamar el evangelio de Jesucristo con claridad, profundidad bíblica y un llamado directo a la reconciliación con Dios.
+        El enfoque es evangelístico: anunciar a Cristo, afirmar la fe y conducir a una respuesta real del corazón.
+      </p>
     </div>
   </section>
 
@@ -148,16 +291,15 @@
     </div>
 
     <div class="card bookGrid">
-      <div>
-        <div class="cover">
-          Aquí pondremos la portada<br>
-          (cuando la tengas en JPG/PNG)
-        </div>
+      <div class="imgBox" title="Portada del libro">
+        <!-- Cuando subas la portada al repo, cambia la línea de abajo -->
+        <!-- <img src="portada.jpg" alt="Portada del libro" /> -->
+        Portada del libro<br>(pendiente subir imagen)
       </div>
 
       <div>
-        <h3 style="margin:0 0 8px;font-size:18px;">Restaurando una relación quebrantada: Amigos del Espíritu Santo</h3>
-        <p style="margin:0;color:var(--muted)">
+        <h3>Restaurando una relación quebrantada: Amigos del Espíritu Santo</h3>
+        <p>
           Un llamado a restaurar la comunión con el Espíritu Santo y profundizar en la vida espiritual.
         </p>
 
@@ -183,7 +325,7 @@
 
     <div class="grid">
       <div class="card">
-        <p style="margin:0 0 10px;color:var(--muted)">
+        <p style="margin-bottom:12px">
           Completa este formulario y se abrirá un correo listo para enviar con tu solicitud.
         </p>
 
@@ -206,7 +348,7 @@
           <label>Detalles del evento</label>
           <textarea id="mensaje" required placeholder="Horario, tipo de actividad, dirección, etc."></textarea>
 
-          <div class="cta" style="margin-top:12px">
+          <div class="formActions">
             <button class="btn primary" type="submit">Enviar solicitud por email</button>
             <a class="btn" href="https://wa.me/17875194549?text=Saludos%20Josu%C3%A9%2C%20deseo%20invitarte%20a%20predicar.%20%C2%BFC%C3%B3mo%20coordinamos%3F" target="_blank" rel="noopener">Coordinar por WhatsApp</a>
           </div>
@@ -214,11 +356,11 @@
       </div>
 
       <div class="card">
-        <h3 style="margin:0 0 10px;font-size:16px;">Información útil</h3>
+        <h3>Qué incluir en la invitación</h3>
         <ul>
           <li>Fecha y horario</li>
           <li>Dirección exacta</li>
-          <li>Tipo de actividad</li>
+          <li>Tipo de actividad (culto, campaña, retiro, aniversario)</li>
           <li>Persona de contacto</li>
           <li>Expectativa del mensaje (evangelístico / enseñanza)</li>
         </ul>
@@ -247,7 +389,7 @@
           <label>Mensaje</label>
           <textarea id="msg" required placeholder="Escribe tu mensaje..."></textarea>
 
-          <div class="cta" style="margin-top:12px">
+          <div class="formActions">
             <button class="btn primary" type="submit">Enviar por email</button>
             <a class="btn" href="https://wa.me/17875194549" target="_blank" rel="noopener">WhatsApp</a>
           </div>
